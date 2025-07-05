@@ -28,9 +28,11 @@ jobs:
         env:
           ARCH: ${{ matrix.arch }}-${{ matrix.sdk }}
           FEEDNAME: packages_ci
-          PACKAGES: luci-app-fchomo luci-app-homeproxy luci-app-nikki luci-app-openclash luci-app-passwall luci-app-passwall2 luci-app-ssr-plus luci-app-bypass brook hysteria ipt2socks pdnsd-alt redsocks2 shadow-tls trojan tuic-client xray-plugin v2ray-core v2ray-geodata naiveproxy sing-box
+          PACKAGES: openwrt-shadowsocksr
           NO_REFRESH_CHECK: true
           IGNORE_ERRORS: true
+          NO_DEFAULT_FEEDS: true
+          EXTRA_FEEDS: src-git|feeds|https://github.com/shadowsocks/openwrt-feeds src-git|openwrt-shadowsocksr|https://github.com/chenhw2/openwrt-shadowsocksr
 
       - name: Store packages
         uses: actions/upload-artifact@main
