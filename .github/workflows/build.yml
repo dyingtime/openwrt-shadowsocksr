@@ -32,7 +32,9 @@ jobs:
           NO_REFRESH_CHECK: true
           IGNORE_ERRORS: true
           NO_DEFAULT_FEEDS: true
-          EXTRA_FEEDS: src-git|feeds|https://github.com/shadowsocks/openwrt-feeds src-git|openwrt-shadowsocksr|https://github.com/chenhw2/openwrt-shadowsocksr
+          EXTRA_FEEDS: |
+            shadowsocks|https://github.com/shadowsocks/openwrt-feeds.git
+            shadowsocksr-libev|https://github.com/chenhw2/openwrt-shadowsocksr.git
 
       - name: Store packages
         uses: actions/upload-artifact@main
