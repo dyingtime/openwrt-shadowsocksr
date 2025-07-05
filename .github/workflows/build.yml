@@ -34,7 +34,7 @@ jobs:
           NO_DEFAULT_FEEDS: true
           EXTRA_FEEDS: |
             src-git|shadowsocks|https://github.com/shadowsocks/openwrt-feeds.git
-            src-git|shadowsocksr-libev|https://github.com/chenhw2/openwrt-shadowsocksr.git
+            src-git|shadowsocksrlibev|https://github.com/chenhw2/openwrt-shadowsocksr.git
 
       - name: Store packages
         uses: actions/upload-artifact@main
