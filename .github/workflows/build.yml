@@ -28,7 +28,7 @@ jobs:
         env:
           ARCH: ${{ matrix.arch }}-${{ matrix.sdk }}
           FEEDNAME: packages_ci
-          PACKAGES: openwrt-shadowsocksr
+          PACKAGES: shadowsocksr
           NO_REFRESH_CHECK: true
           IGNORE_ERRORS: true
           NO_DEFAULT_FEEDS: true
