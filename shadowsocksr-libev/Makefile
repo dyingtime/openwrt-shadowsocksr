@@ -49,7 +49,7 @@ menu "Shadowsocksr-libev Compile Configuration"
 	depends on PACKAGE_shadowsocksr-libev
 	config SHADOWSOCKSR_STATIC_LINK
 		bool "enable static link libraries."
-		default y
+		default n
 
 		menu "Select libraries"
 			depends on SHADOWSOCKSR_STATIC_LINK
