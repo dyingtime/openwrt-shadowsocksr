@@ -32,7 +32,7 @@ jobs:
           NO_REFRESH_CHECK: true
           IGNORE_ERRORS: true
           EXTRA_FEEDS: |
-            src-git|/package/feeds|https://github.com/shadowsocks/openwrt-feeds.git
+            src-git|shadowsocks|https://github.com/shadowsocks/openwrt-feeds.git
 
       - name: Store packages
         uses: actions/upload-artifact@main
@@ -48,7 +48,7 @@ jobs:
           echo -e "2. 使用方法：将整合包上传到openwrt设备的tmp目录，输入命令 \`opkg install *.ipk\`\n" >> release.txt
           echo -e "3. 默认压缩包里包含ssr passwall bypass passwall2 插件\n" >> release.txt
           echo -e "4. 如果单独安装ssr与依赖，\`rm -rf {*passwall*,*bypass*,*homeproxy*}\`\n" >> release.txt
-          
+
       - name: Upload packages
         uses: ncipollo/release-action@main
         with:
@@ -64,7 +64,7 @@ jobs:
         with:
           retain_days: 10
           keep_minimum_runs: 2
-    
+
       - name: Remove old Releases
         uses: dev-drprasad/delete-older-releases@master
         with:
