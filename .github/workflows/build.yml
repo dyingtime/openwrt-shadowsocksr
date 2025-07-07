@@ -31,6 +31,8 @@ jobs:
           PACKAGES: shadowsocksr-libev
           NO_REFRESH_CHECK: true
           IGNORE_ERRORS: true
+          EXTRA_FEEDS: |
+            src-git|shadowsocks|https://github.com/shadowsocks/openwrt-feeds.git
           V: s
 
 
