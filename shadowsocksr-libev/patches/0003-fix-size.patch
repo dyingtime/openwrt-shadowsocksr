@@ -1,0 +1,25 @@
+From 59e2023501fbd312edaa699d9c41dc8837f1ef00 Mon Sep 17 00:00:00 2001
+From: "wes.lin" <wes.lin@ringcentral.com>
+Date: Mon, 7 Jul 2025 16:56:10 +0800
+Subject: [PATCH] fix: size
+
+---
+ src/local.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/local.c b/src/local.c
+index d7e49ad..7182bd4 100644
+--- a/src/local.c
++++ b/src/local.c
+@@ -718,7 +718,7 @@ server_recv_cb(EV_P_ ev_io *w, int revents) {
+ 
+                     ss_free(hostname);
+                 } else {
+-                    strncpy(host, ip, sizeof(ip));
++                    strncpy(host, ip, sizeof(INET6_ADDRSTRLEN));
+                 }
+             }
+ 
+-- 
+2.39.3 (Apple Git-146)
+

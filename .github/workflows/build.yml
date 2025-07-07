@@ -42,7 +42,6 @@ jobs:
 
       - name: Zip packages
         run: |
-          ls bin/packages/${{ matrix.arch }}/packages_ci
           zip -j ${{ matrix.arch }}-${{ matrix.sdk }}.zip bin/packages/${{ matrix.arch }}/packages_ci/*pk
           echo -e "**文件说明** ?:\n" >> release.txt
           echo -e "1. 默认ssr与passwall的插件与依赖整合包\n" >> release.txt
