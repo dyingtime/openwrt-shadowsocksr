@@ -37,9 +37,7 @@ define Package/shadowsocksr-libev/Default
 	CATEGORY:=Network
 	TITLE:=Lightweight Secured Socks5 Proxy
 	URL:=https://github.com/shadowsocksrr/shadowsocksr-libev
-	DEPENDS:=+zlib +libpthread \
-		+!SHADOWSOCKSR_WITH_PCRE:libpcre \
-		+!SHADOWSOCKSR_WITH_MBEDTLS:libmbedtls
+	DEPENDS:=+zlib +libpthread 
 endef
 
 Package/shadowsocksr-libev = $(call Package/shadowsocksr-libev/Default)
@@ -55,10 +53,10 @@ menu "Shadowsocksr-libev Compile Configuration"
 			depends on SHADOWSOCKSR_STATIC_LINK
 			config SHADOWSOCKSR_WITH_PCRE
 				bool "static link libpcre."
-				default y
+				default n
 			config SHADOWSOCKSR_WITH_MBEDTLS
 				bool "static link libmbedtls."
-				default y
+				default n
 		endmenu
 endmenu
 endef
