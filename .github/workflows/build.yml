@@ -28,7 +28,7 @@ jobs:
         env:
           ARCH: ${{ matrix.arch }}-${{ matrix.sdk }}
           FEEDNAME: packages_ci
-          PACKAGES: shadowsocksr
+          PACKAGES: shadowsocksr-libev
           NO_REFRESH_CHECK: true
           IGNORE_ERRORS: true
           EXTRA_FEEDS: |
