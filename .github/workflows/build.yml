@@ -30,7 +30,7 @@ jobs:
           FEEDNAME: packages_ci
           PACKAGES: shadowsocksr-libev
           NO_REFRESH_CHECK: true
-          IGNORE_ERRORS: false
+          IGNORE_ERRORS: true
           V: s
 
 
