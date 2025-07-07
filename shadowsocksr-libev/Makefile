@@ -69,15 +69,6 @@ endef
 
 CONFIGURE_ARGS += --disable-ssp --disable-documentation --disable-assert --with-crypto-library=mbedtls
 
-ifeq ($(CONFIG_SHADOWSOCKSR_STATIC_LINK),y)
-	ifeq ($(CONFIG_SHADOWSOCKSR_WITH_PCRE),y)
-		CONFIGURE_ARGS += --with-pcre="$(STAGING_DIR)/usr"
-	endif
-	ifeq ($(CONFIG_SHADOWSOCKSR_WITH_MBEDTLS),y)
-		CONFIGURE_ARGS += --with-mbedtls="$(STAGING_DIR)/usr"
-	endif
-	CONFIGURE_ARGS += LDFLAGS="-Wl,-static -static -static-libgcc"
-endif
 define Package/shadowsocksr-libev/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/ss-local $(1)/usr/bin/ssr-local
