@@ -4,7 +4,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=shadowsocksr-libev
 PKG_VERSION:=2018-03-07
-PKG_RELEASE:=4799b312b8244ec067b8ae9ba4b85c877858976c
+PKG_RELEASE:=3fc11a0a132aa6f229285f459e8ce391c20bf86b731b757b0de4dbc96c12301c
 PKG_MIRROR_HASH:=9f90a8ac4fd57de1b8f5aae09e8e2da81f4cf387e487710aec5e34c4af98d740
 
 PKG_SOURCE_PROTO:=git
@@ -24,6 +24,11 @@ PKG_FIXUP:=autoreconf
 PKG_USE_MIPS16:=0
 PKG_BUILD_PARALLEL:=1
 
+PKG_CONFIG_DEPENDS:= \
+	CONFIG_SHADOWSOCKSR_STATIC_LINK \
+	CONFIG_SHADOWSOCKSR_WITH_PCRE \
+	CONFIG_SHADOWSOCKSR_WITH_MBEDTLS
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/shadowsocksr-libev/Default
@@ -36,11 +41,30 @@ endef
 
 Package/shadowsocksr-libev = $(call Package/shadowsocksr-libev/Default)
 
+define Package/shadowsocksr-libev/config
+menu "Shadowsocksr-libev Compile Configuration"
+	depends on PACKAGE_shadowsocksr-libev
+	config SHADOWSOCKSR_STATIC_LINK
+		bool "enable static link libraries."
+		default n
+
+		menu "Select libraries"
+			depends on SHADOWSOCKSR_STATIC_LINK
+			config SHADOWSOCKSR_WITH_PCRE
+				bool "static link libpcre."
+				default n
+			config SHADOWSOCKSR_WITH_MBEDTLS
+				bool "static link libmbedtls."
+				default n
+		endmenu
+endmenu
+endef
+
 define Package/shadowsocksr-libev/description
 shadowsocksr-libev is a lightweight secured socks5 proxy for embedded devices and low end boxes.
 endef
 
-CONFIGURE_ARGS += --disable-ssp --disable-documentation --disable-assert
+CONFIGURE_ARGS += --disable-ssp --disable-documentation --disable-assert 
 
 define Package/shadowsocksr-libev/install
 	$(INSTALL_DIR) $(1)/usr/bin
