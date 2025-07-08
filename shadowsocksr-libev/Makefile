@@ -23,6 +23,7 @@ PKG_INSTALL:=1
 PKG_FIXUP:=autoreconf
 PKG_USE_MIPS16:=0
 PKG_BUILD_PARALLEL:=1
+PKG_BUILD_DEPENDS:=mbedtls pcre
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_SHADOWSOCKSR_STATIC_LINK \
@@ -36,7 +37,7 @@ define Package/shadowsocksr-libev/Default
 	CATEGORY:=Network
 	TITLE:=Lightweight Secured Socks5 Proxy
 	URL:=https://github.com/shadowsocksrr/shadowsocksr-libev
-	DEPENDS:=+libev +libsodium +libopenssl +libpthread +libpcre2 +libudns +zlib +libopenssl-legacy
+	DEPENDS:=+zlib +libpthread 
 endef
 
 Package/shadowsocksr-libev = $(call Package/shadowsocksr-libev/Default)
