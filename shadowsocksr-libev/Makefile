@@ -37,7 +37,7 @@ define Package/shadowsocksr-libev/Default
 	CATEGORY:=Network
 	TITLE:=Lightweight Secured Socks5 Proxy
 	URL:=https://github.com/shadowsocksrr/shadowsocksr-libev
-	DEPENDS:=+zlib +libpthread 
+	DEPENDS:=+zlib +libpthread +libsodium
 endef
 
 Package/shadowsocksr-libev = $(call Package/shadowsocksr-libev/Default)
@@ -64,6 +64,21 @@ endef
 define Package/shadowsocksr-libev/description
 shadowsocksr-libev is a lightweight secured socks5 proxy for embedded devices and low end boxes.
 endef
+
+# 配置系统 libsodium 的路径
+CONFIGURE_VARS += \
+	LIBSODIUM_CFLAGS="-I$(STAGING_DIR)/usr/include" \
+	LIBSODIUM_LIBS="-lsodium"
+
+# 删除源码中自带的旧 libsodium，强制使用系统版本
+define Build/Prepare
+	$(call Build/Prepare/Default)
+	rm -rf $(PKG_BUILD_DIR)/libsodium
+endef
+
+# 添加编译器 include 和 lib 路径
+TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include
+TARGET_LDFLAGS += -L$(STAGING_DIR)/usr/lib
 
 CONFIGURE_ARGS += --disable-ssp --disable-documentation --disable-assert --with-crypto-library=mbedtls
 
